@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--引入 dtd 约束-->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--    实体类与数据库表的对应-->
+    <class name="cn.itcast.manyToMany.entity.Role" table="role">
+        <!-- 实体类的 id 与表的主键对应-->
+        <id name="rid">
+            <!--            native:设置主键，自动增长-->
+            <generator class="native"></generator>
+        </id>
+        <!--实体类的其他属性与表的列名对应-->
+        <property name="rname"></property>
+        <property name="rdes"></property>
+        <!--在角色中表示所有用户-->
+        <set name="userSet" table="user_role" cascade="save-update">
+            <key column="rid"></key>
+            <many-to-many class="cn.itcast.manyToMany.entity.User" column="uid"></many-to-many>
+        </set>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--引入 dtd 约束-->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--    实体类与数据库表的对应-->
+    <class name="cn.itcast.oneToMany.entity.LinkMan" table="linkman">
+        <!-- 实体类的 id 与表的主键对应-->
+        <id name="lid">
+            <!--            native:设置主键，自动增长-->
+            <generator class="native"></generator>
+        </id>
+        <!--实体类的其他属性与表的列名对应-->
+        <property name="lname"></property>
+        <property name="lgender"></property>
+        <property name="lphone"></property>
+<!--        表示联系人所属客户-->
+        <many-to-one name="customer" column="clid" class="cn.itcast.oneToMany.entity.Customer"></many-to-one>
+
+
+    </class>
+</hibernate-mapping>

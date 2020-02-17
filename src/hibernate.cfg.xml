@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+<!--        第一部分：配置数据库信息，必须配置-->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">
+                jdbc:mysql://localhost:3306/hibernate?verifyServerCertificate=false&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">1234</property>
+<!--        第二部分：配置 hibernate 信息，可选配置-->
+<!--        输出底层 SQL 语句-->
+        <property name="hibernate.show_sql">true</property>
+<!--        输出底层 SQL 语句格式-->
+        <property name="hibernate.format_sql">true</property>
+<!--        如何自动创建表：update(如果已经有表，更新，没有则创建)-->
+        <property name="hibernate.hibernate.hbm2ddl.auto">update</property>
+<!--        配置数据库方言：-->
+<!--         让 hibernate 框架识别不同数据库的自己特有的语句-->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+<!--            配置 session 与本地线程绑定-->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+<!--        第三部分：把映射文件放到核心配置文件中,必须配置-->
+        <mapping resource="cn/itcast/oneToMany/entity/Customer.hbm.xml"/>
+        <mapping resource="cn/itcast/oneToMany/entity/LinkMan.hbm.xml"/>
+
+        <mapping resource="cn/itcast/manyToMany/entity/User.hbm.xml"/>
+        <mapping resource="cn/itcast/manyToMany/entity/Role.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>
